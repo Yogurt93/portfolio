@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Барбершоп «Бритва» — мужские стрижки и бороды</title>
+<meta name="description" content="Мужские стрижки, оформление бороды, королевское бритьё. Барберы с опытом 5+ лет. Онлайн-запись за минуту.">
+<style>
+  :root{
+    --bg:#faf9f7;
+    --card:#ffffff;
+    --text:#1c1917;
+    --muted:#78716c;
+    --accent:#b45309;
+    --accent-dark:#92400e;
+    --border:#e7e5e4;
+    --radius:14px;
+    --shadow:0 4px 16px rgba(28,25,23,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;
+    overflow-x:hidden;-webkit-text-size-adjust:100%;
+  }
+  .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(250,249,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-size:1.3rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--text);text-decoration:none}
+  .logo span{color:var(--accent)}
+  nav{display:flex;gap:24px}
+  nav a{color:var(--muted);text-decoration:none;font-size:.95rem;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  .header-phone{font-weight:600;color:var(--text);text-decoration:none}
+  .header-phone:hover{color:var(--accent)}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .burger svg{width:26px;height:26px;stroke:var(--text)}
+
+  .hero{padding:80px 0 60px;text-align:center;background:
+    radial-gradient(circle at 20% 15%,rgba(180,83,9,.09),transparent 45%),
+    radial-gradient(circle at 80% 5%,rgba(180,83,9,.07),transparent 40%)}
+  .hero .tag{display:inline-block;border:1px solid var(--accent);color:var(--accent);
+    padding:4px 16px;border-radius:999px;font-size:.85rem;margin-bottom:20px;letter-spacing:.08em;text-transform:uppercase}
+  .hero h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.15;font-weight:800}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p{max-width:540px;margin:16px auto 28px;color:var(--muted);font-size:1.05rem}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:14px 36px;border-radius:999px;
+    text-decoration:none;font-weight:600;border:none;cursor:pointer;font-size:1rem;transition:background .2s,transform .2s}
+  .btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent);margin-left:12px}
+  .btn-outline:hover{background:var(--accent);color:#fff}
+  .hero-badges{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:40px;color:var(--muted);font-size:.9rem}
+  .hero-badges b{display:block;font-size:1.5rem;color:var(--text)}
+
+  section{padding:64px 0}
+  .section-title{text-align:center;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:40px;font-weight:700}
+  .section-title::after{content:"";display:block;width:56px;height:3px;background:var(--accent);margin:12px auto 0;border-radius:2px}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px 22px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(28,25,23,.12)}
+  .card .icon{font-size:2rem;margin-bottom:12px}
+  .card h3{font-size:1.05rem;margin-bottom:8px}
+  .card p{font-size:.9rem;color:var(--muted)}
+  .card .price{display:block;margin-top:14px;font-weight:700;color:var(--accent)}
+
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .why .card{text-align:center}
+  .why b{font-size:2rem;color:var(--accent)}
+
+  #booking{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .contact-info h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:16px}
+  .contact-info p{color:var(--muted);margin-bottom:20px}
+  .contact-list{list-style:none}
+  .contact-list li{display:flex;gap:12px;margin-bottom:14px}
+  .contact-list .dot{color:var(--accent);font-weight:700}
+  form{display:grid;gap:14px}
+  .field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+  .field input,.field select,.field textarea{
+    width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;
+    font:inherit;color:var(--text);background:var(--bg);transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(180,83,9,.15)}
+  .field textarea{resize:vertical;min-height:90px}
+  .form-note{font-size:.8rem;color:var(--muted)}
+  .form-success{display:none;background:#fffbeb;border:1px solid #fde68a;color:#92400e;
+    padding:12px 16px;border-radius:10px;font-size:.9rem}
+  .form-success.visible{display:block}
+  .btn-full{width:100%}
+
+  footer{padding:28px 0;text-align:center;color:var(--muted);font-size:.88rem}
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media (max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .why{grid-template-columns:1fr}
+    .contact-wrap{grid-template-columns:1fr}
+    nav{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;
+      background:var(--card);border-bottom:1px solid var(--border);padding:16px 24px;gap:16px}
+    nav.open{display:flex}
+    .burger{display:block}
+    .header-phone{display:none}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:1fr}
+    .btn-outline{margin-left:0}
+    .btn{width:100%}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a class="logo" href="#">Барбер<span>Шоп «Бритва»</span></a>
+    <nav id="nav">
+      <a href="#services">Услуги</a>
+      <a href="#why">Почему мы</a>
+      <a href="#booking">Запись</a>
+    </nav>
+    <a class="header-phone" href="tel:+79001234567">+7 (900) 123-45-67</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="tag">Мужское дело</span>
+      <h1>Стрижка, после которой <em>забывают слова «подстриги как обычно»</em></h1>
+      <p>Барберы с опытом от 5 лет. Работаем по записи — без очередей и спешки. Пиво, виски, PlayStation в зоне отдыха.</p>
+      <a class="btn" href="#booking">Записаться онлайн</a>
+      <a class="btn btn-outline" href="#services">Услуги и цены</a>
+      <div class="hero-badges">
+        <div><b>5+</b>лет работы</div>
+        <div><b>8000+</b>довольных клиентов</div>
+        <div><b>4.9</b>рейтинг на картах</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">✂️</div>
+          <h3>Мужская стрижка</h3>
+          <p>Стрижка машинкой и ножницами, мытьё, укладка со средствами.</p>
+          <span class="price">1 500 ₽</span>
+        </div>
+        <div class="card">
+          <div class="icon">🧔</div>
+          <h3>Оформление бороды</h3>
+          <p>Форма, окантовка бритвой, масло и уход за кожей под бородой.</p>
+          <span class="price">1 200 ₽</span>
+        </div>
+        <div class="card">
+          <div class="icon">👑</div>
+          <h3>Комплекс</h3>
+          <p>Стрижка + борода со скидкой. Полное обновление за 1,5 часа.</p>
+          <span class="price">2 400 ₽</span>
+        </div>
+        <div class="card">
+          <div class="icon">🪒</div>
+          <h3>Королевское бритьё</h3>
+          <p>Опасная бритва, горячее полотенце, уходовая косметика.</p>
+          <span class="price">1 800 ₽</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="container">
+      <h2 class="section-title">Почему к нам возвращаются</h2>
+      <div class="why">
+        <div class="card"><b>1,5 часа</b><p>среднее время визита — не «пять минут конвейером», а работа вдумчиво</p></div>
+        <div class="card"><b>0 ₽</b><p>коррекция в течение недели, если что-то село не так</p></div>
+        <div class="card"><b>∞</b><p>чашка кофе, виски или газировки — за наш счёт</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="container contact-wrap">
+      <div class="contact-info">
+        <h2>Запишись — свободные окна на этой неделе ещё есть</h2>
+        <p>Оставь номер, перезвоним в течение 15 минут и подберём удобное время. Или пиши сразу в Telegram: <b>@britva_barber</b></p>
+        <ul class="contact-list">
+          <li><span class="dot">✓</span><span>Ежедневно с 10:00 до 21:00</span></li>
+          <li><span class="dot">✓</span><span>Работаем строго по записи — без очередей</span></li>
+          <li><span class="dot">✓</span><span>Детские стрижки — барберы, которым доверяют пацаны</span></li>
+        </ul>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">Имя *</label>
+          <input type="text" id="name" name="name" placeholder="Максим" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <div class="field">
+          <label for="service">Услуга</label>
+          <select id="service" name="service">
+            <option>Мужская стрижка</option>
+            <option>Оформление бороды</option>
+            <option>Комплекс (стрижка + борода)</option>
+            <option>Королевское бритьё</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="comment">Комментарий</label>
+          <textarea id="comment" name="comment" placeholder="Например: хочу в субботу после 15:00"></textarea>
+        </div>
+        <div class="form-success" id="success">Готово! Перезвоним в течение 15 минут и запишем на удобное время.</div>
+        <button type="submit" class="btn btn-full">Записаться</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Барбершоп «Бритва». Ул. Центральная, 1. Телефон: <a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!this.name.value.trim() || !this.phone.value.trim()){
+      alert('Укажи имя и телефон — без них не записать.');
+      return;
+    }
+    document.getElementById('success').classList.add('visible');
+    this.reset();
+  });
+</script>
+</body>
+</html>
