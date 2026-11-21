@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Автосервис «Гараж 42» — ремонт и обслуживание авто</title>
+<meta name="description" content="Диагностика, ремонт ходовой, замена масла, ТО. Честные цены, гарантия на работы 6 месяцев. Онлайн-запись.">
+<style>
+  :root{
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --text:#111827;
+    --muted:#6b7280;
+    --accent:#2563eb;
+    --accent-dark:#1d4ed8;
+    --border:#e5e7eb;
+    --radius:14px;
+    --shadow:0 4px 16px rgba(17,24,39,.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Segoe UI",Arial,Helvetica,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;
+    overflow-x:hidden;-webkit-text-size-adjust:100%;
+  }
+  .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(245,247,250,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-size:1.25rem;font-weight:800;color:var(--text);text-decoration:none;white-space:nowrap}
+  .logo span{color:var(--accent)}
+  nav{display:flex;gap:24px}
+  nav a{color:var(--muted);text-decoration:none;font-size:.95rem;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  .header-phone{font-weight:600;color:var(--text);text-decoration:none;white-space:nowrap}
+  .header-phone:hover{color:var(--accent)}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .burger svg{width:26px;height:26px;stroke:var(--text)}
+
+  .hero{padding:76px 0 56px;text-align:center;background:
+    radial-gradient(circle at 15% 20%,rgba(37,99,235,.08),transparent 42%),
+    radial-gradient(circle at 85% 8%,rgba(37,99,235,.06),transparent 45%)}
+  .hero h1{font-size:clamp(1.7rem,4.5vw,2.7rem);line-height:1.2;font-weight:800}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p{max-width:580px;margin:16px auto 28px;color:var(--muted);font-size:1.05rem}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:14px 36px;border-radius:999px;
+    text-decoration:none;font-weight:600;border:none;cursor:pointer;font-size:1rem;transition:background .2s,transform .2s}
+  .btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent);margin-left:12px}
+  .btn-outline:hover{background:var(--accent);color:#fff}
+  .hero-badges{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:40px;color:var(--muted);font-size:.9rem}
+  .hero-badges b{display:block;font-size:1.5rem;color:var(--text)}
+
+  section{padding:64px 0}
+  .section-title{text-align:center;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:40px;font-weight:700}
+  .section-title::after{content:"";display:block;width:56px;height:3px;background:var(--accent);margin:12px auto 0;border-radius:2px}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px 22px;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(17,24,39,.12)}
+  .card .icon{font-size:2rem;margin-bottom:12px}
+  .card h3{font-size:1.05rem;margin-bottom:8px}
+  .card p{font-size:.9rem;color:var(--muted)}
+  .card .price{display:block;margin-top:14px;font-weight:700;color:var(--accent)}
+
+  .promise{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;box-shadow:var(--shadow)}
+  .promise div b{display:block;color:var(--accent);font-size:1.05rem;margin-bottom:6px}
+  .promise div p{font-size:.9rem;color:var(--muted)}
+
+  #booking{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .contact-info h2{font-size:clamp(1.4rem,3vw,2rem);margin-bottom:16px}
+  .contact-info p{color:var(--muted);margin-bottom:20px}
+  .contact-list{list-style:none}
+  .contact-list li{display:flex;gap:12px;margin-bottom:14px}
+  .contact-list .dot{color:var(--accent);font-weight:700}
+  form{display:grid;gap:14px}
+  .field label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+  .field input,.field select,.field textarea{
+    width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;
+    font:inherit;color:var(--text);background:var(--bg);transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+  .field textarea{resize:vertical;min-height:96px}
+  .form-note{font-size:.8rem;color:var(--muted)}
+  .form-success{display:none;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;
+    padding:12px 16px;border-radius:10px;font-size:.9rem}
+  .form-success.visible{display:block}
+  .btn-full{width:100%}
+
+  footer{padding:28px 0;text-align:center;color:var(--muted);font-size:.88rem}
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media (max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .promise{grid-template-columns:1fr}
+    .contact-wrap{grid-template-columns:1fr}
+    nav{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;
+      background:var(--card);border-bottom:1px solid var(--border);padding:16px 24px;gap:16px}
+    nav.open{display:flex}
+    .burger{display:block}
+    .header-phone{display:none}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:1fr}
+    .btn-outline{margin-left:0}
+    .btn{width:100%}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a class="logo" href="#">Гараж <span>42</span></a>
+    <nav id="nav">
+      <a href="#services">Услуги</a>
+      <a href="#promise">Наши гарантии</a>
+      <a href="#booking">Запись</a>
+    </nav>
+    <a class="header-phone" href="tel:+79001234567">+7 (900) 123-45-67</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Чиним так, чтобы <em>ты вернулся сам</em>, а не на эвакуаторе</h1>
+      <p>Диагностика перед любым ремонтом — бесплатно. Цены называем до начала работ и не меняем в процессе. Гарантия на работы — 6 месяцев.</p>
+      <a class="btn" href="#booking">Записаться на диагностику</a>
+      <a class="btn btn-outline" href="#services">Услуги и цены</a>
+      <div class="hero-badges">
+        <div><b>12 лет</b>на этом месте</div>
+        <div><b>6000+</b>обслуженных авто</div>
+        <div><b>4.8</b>рейтинг на картах</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">🔍</div>
+          <h3>Диагностика</h3>
+          <p>Компьютерная и визуальная диагностика. Находим причину, а не лечим симптомы.</p>
+          <span class="price">бесплатно*</span>
+        </div>
+        <div class="card">
+          <div class="icon">🔧</div>
+          <h3>Ремонт ходовой</h3>
+          <p>Подвеска, тормоза, рулевое. Запчасти можем привезти сами или работаем с вашими.</p>
+          <span class="price">от 1 500 ₽</span>
+        </div>
+        <div class="card">
+          <div class="icon">🛢️</div>
+          <h3>ТО и масла</h3>
+          <p>Замена масла, фильтров, свечей. По регламенту производителя вашей машины.</p>
+          <span class="price">от 800 ₽</span>
+        </div>
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Электрика</h3>
+          <p>Аккумуляторы, стартеры, генераторы, датчики. Ищем косяки, которые другие не находят.</p>
+          <span class="price">от 1 000 ₽</span>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:16px;font-size:.82rem;color:var(--muted)">* при согласии на ремонт в нашем сервисе</p>
+    </div>
+  </section>
+
+  <section id="promise">
+    <div class="container">
+      <h2 class="section-title">Три обещания</h2>
+      <div class="promise">
+        <div><b>Цена не вырастет</b><p>Смету подписываем до начала работ. «Всплыли детали» — звоним и согласовываем, а не молча меняем счёт.</p></div>
+        <div><b>Гарантия 6 месяцев</b><p>На все работы. Что-то пошло не так по нашей вине — переделываем бесплатно.</p></div>
+        <div><b>Показываем всё</b><p>Снятые запчасти отдаём, ремонт можем показать в подъемнике. Ничего не прячем.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="container contact-wrap">
+      <div class="contact-info">
+        <h2>Опишите проблему — скажем цену до приезда</h2>
+        <p>Оставь заявку с описанием симптомов и маркой машины. Перезвоним в течение 15 минут, назовём ориентир по цене и запишем на удобное время.</p>
+        <ul class="contact-list">
+          <li><span class="dot">✓</span><span>Работаем пн–сб с 9:00 до 20:00</span></li>
+          <li><span class="dot">✓</span><span>Есть зона ожидания с кофе и Wi-Fi</span></li>
+          <li><span class="dot">✓</span><span>Принимаем карты, наличные и перевод</span></li>
+        </ul>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">Имя *</label>
+          <input type="text" id="name" name="name" placeholder="Дмитрий" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <div class="field">
+          <label for="car">Марка и модель авто</label>
+          <input type="text" id="car" name="car" placeholder="Kia Rio 2019">
+        </div>
+        <div class="field">
+          <label for="comment">Что случилось</label>
+          <textarea id="comment" name="comment" placeholder="Например: стучит спереди справа при проезде неровностей"></textarea>
+        </div>
+        <div class="form-success" id="success">Заявка принята! Перезвоним в течение 15 минут с ориентиром по цене.</div>
+        <button type="submit" class="btn btn-full">Отправить заявку</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Автосервис «Гараж 42». Ул. Промышленная, 42. Телефон: <a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!this.name.value.trim() || !this.phone.value.trim()){
+      alert('Укажите имя и телефон.');
+      return;
+    }
+    document.getElementById('success').classList.add('visible');
+    this.reset();
+  });
+</script>
+</body>
+</html>
