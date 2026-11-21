@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Студия маникюра «LUMI» — ногтевой сервис и брови</title>
+<meta name="description" content="Маникюр, гель-лак, педикюр и брови от мастеров с опытом 4+ лет. Онлайн-запись, стерильные инструменты, гарантия на покрытие 14 дней.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141216;
+    --card:#1d1922;
+    --text:#f3eef2;
+    --muted:#a89ca6;
+    --accent:#e3a4b5;
+    --accent-strong:#c97b93;
+    --border:#2e2833;
+    --radius:16px;
+    --shadow:0 6px 24px rgba(0,0,0,.35);
+    --serif:"Playfair Display",Georgia,serif;
+    --sans:"Inter","Segoe UI",Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.65;
+    overflow-x:hidden;-webkit-text-size-adjust:100%;
+  }
+  .container{max-width:1080px;margin:0 auto;padding:0 20px}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(20,18,22,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{font-family:var(--serif);font-size:1.45rem;font-weight:700;letter-spacing:.18em;color:var(--text);text-decoration:none}
+  .logo b{color:var(--accent);font-weight:700}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--muted);text-decoration:none;font-size:.92rem;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  .header-phone{font-weight:500;color:var(--text);text-decoration:none;font-size:.92rem}
+  .header-phone:hover{color:var(--accent)}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .burger svg{width:26px;height:26px;stroke:var(--text)}
+
+  .hero{padding:90px 0 70px;background:
+    radial-gradient(ellipse at 85% 20%,rgba(227,164,181,.14),transparent 50%),
+    radial-gradient(ellipse at 10% 80%,rgba(201,123,147,.08),transparent 45%)}
+  .hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero .tag{display:inline-block;border:1px solid var(--accent);color:var(--accent);
+    padding:5px 18px;border-radius:999px;font-size:.8rem;margin-bottom:22px;letter-spacing:.22em;text-transform:uppercase}
+  .hero h1{font-family:var(--serif);font-size:clamp(1.9rem,4.6vw,3.1rem);line-height:1.18;font-weight:600}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero p{max-width:460px;margin:18px 0 30px;color:var(--muted);font-size:1.02rem}
+  .btn{display:inline-block;background:var(--accent);color:#241519;padding:14px 38px;border-radius:999px;
+    text-decoration:none;font-weight:600;border:none;cursor:pointer;font-size:.98rem;transition:background .2s,transform .2s}
+  .btn:hover{background:var(--accent-strong);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent);margin-left:12px}
+  .btn-outline:hover{background:var(--accent);color:#241519}
+  .hero-side{display:grid;gap:14px}
+  .side-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;display:flex;gap:16px;align-items:center;box-shadow:var(--shadow)}
+  .side-card b{font-family:var(--serif);font-size:1.6rem;color:var(--accent);min-width:74px}
+  .side-card span{font-size:.9rem;color:var(--muted)}
+
+  section{padding:70px 0}
+  .section-title{font-family:var(--serif);text-align:center;font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:44px;font-weight:600}
+  .section-title::after{content:"";display:block;width:64px;height:1px;background:var(--accent);margin:16px auto 0}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+    padding:30px 24px;box-shadow:var(--shadow);transition:transform .2s,border-color .2s}
+  .card:hover{transform:translateY(-4px);border-color:var(--accent)}
+  .card .num{font-family:var(--serif);font-size:.95rem;color:var(--accent);letter-spacing:.2em;margin-bottom:14px}
+  .card h3{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin-bottom:10px}
+  .card p{font-size:.88rem;color:var(--muted)}
+  .card .price{display:block;margin-top:16px;font-family:var(--serif);font-size:1.15rem;color:var(--accent)}
+
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .why .card{text-align:center}
+  .why b{font-family:var(--serif);font-size:1.9rem;font-weight:600;color:var(--accent)}
+
+  #booking{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .contact-info h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;margin-bottom:16px}
+  .contact-info p{color:var(--muted);margin-bottom:22px}
+  .contact-list{list-style:none}
+  .contact-list li{display:flex;gap:14px;margin-bottom:14px}
+  .contact-list .dot{color:var(--accent)}
+  form{display:grid;gap:14px}
+  .field label{display:block;font-size:.85rem;font-weight:500;margin-bottom:6px;color:var(--muted)}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:12px;
+    font:inherit;color:var(--text);background:var(--bg);transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(227,164,181,.12)}
+  .field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 15px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+  .field textarea{resize:vertical;min-height:88px}
+  .form-note{font-size:.78rem;color:var(--muted)}
+  .form-success{display:none;background:rgba(227,164,181,.1);border:1px solid var(--accent);color:var(--accent);
+    padding:12px 16px;border-radius:12px;font-size:.9rem}
+  .form-success.visible{display:block}
+  .btn-full{width:100%}
+
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:.86rem}
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media (max-width:900px){
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .why{grid-template-columns:1fr}
+    .contact-wrap{grid-template-columns:1fr}
+    .hero-inner{grid-template-columns:1fr}
+    .hero-side{flex-direction:column}
+    nav{display:none;position:absolute;top:66px;left:0;right:0;flex-direction:column;
+      background:var(--card);border-bottom:1px solid var(--border);padding:18px 24px;gap:16px}
+    nav.open{display:flex}
+    .burger{display:block}
+    .header-phone{display:none}
+  }
+  @media (max-width:520px){
+    .grid{grid-template-columns:1fr}
+    .btn-outline{margin-left:0}
+    .btn{width:100%}
+    section{padding:52px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a class="logo" href="#">LUMI<b>·</b>студия</a>
+    <nav id="nav">
+      <a href="#services">Услуги</a>
+      <a href="#why">О студии</a>
+      <a href="#booking">Запись</a>
+    </nav>
+    <a class="header-phone" href="tel:+79001234567">+7 (900) 123-45-67</a>
+    <button class="burger" id="burger" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="tag">Ногтевой сервис · Брови</span>
+        <h1>Маникюр, после которого <em>не хочется прятать руки</em></h1>
+        <p>Мастера с опытом от 4 лет, стерильные инструменты в крафт-пакетах и гарантия на покрытие 14 дней. Записывайся онлайн — подтверждаем за 10 минут.</p>
+        <a class="btn" href="#booking">Записаться онлайн</a>
+        <a class="btn btn-outline" href="#services">Услуги и цены</a>
+      </div>
+      <div class="hero-side">
+        <div class="side-card"><b>4.9</b><span>рейтинг на Яндекс.Картах — 300+ отзывов</span></div>
+        <div class="side-card"><b>14 дней</b><span>гарантия на покрытие: скол — поправим бесплатно</span></div>
+        <div class="side-card"><b>0 ₽</b><span>педикюр в подарок на первый визит по промокоду</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="num">01</div>
+          <h3>Маникюр + гель-лак</h3>
+          <p>Аппаратный маникюр, выравнивание базы, покрытие в один тон или френч.</p>
+          <span class="price">1 800 ₽</span>
+        </div>
+        <div class="card">
+          <div class="num">02</div>
+          <h3>Дизайн ногтей</h3>
+          <p>Слайдеры, роспись, стемпинг, липкая лента — до двух ногтей бесплатно, дальше от 50 ₽.</p>
+          <span class="price">от 150 ₽</span>
+        </div>
+        <div class="card">
+          <div class="num">03</div>
+          <h3>Педикюр</h3>
+          <p>Аппаратная обработка стоп, покрытие гель-лаком, уходовая маска.</p>
+          <span class="price">2 400 ₽</span>
+        </div>
+        <div class="card">
+          <div class="num">04</div>
+          <h3>Брови</h3>
+          <p>Коррекция пинцетом или воском, окрашивание хной или краской, укладка.</p>
+          <span class="price">1 200 ₽</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="container">
+      <h2 class="section-title">Почему нас выбирают</h2>
+      <div class="why">
+        <div class="card"><b>4+ года</b><p>опыт каждого мастера — работаем аккуратно и быстро, без «доработок» дома</p></div>
+        <div class="card"><b>100%</b><p>инструменты в крафт-пакетах и сухожаре — стерильность как в клинике</p></div>
+        <div class="card"><b>14 дней</b><p>гарантия на покрытие — если скол или отслойка, придёшь и всё поправим</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="container contact-wrap">
+      <div class="contact-info">
+        <h2>Запишись — на этой неделе есть окна у всех мастеров</h2>
+        <p>Оставь номер, перезвоним в течение 15 минут и подберём удобное время. Или пиши сразу в Telegram: <b>@lumi_studio</b></p>
+        <ul class="contact-list">
+          <li><span class="dot">✓</span><span>Ежедневно с 9:00 до 21:00</span></li>
+          <li><span class="dot">✓</span><span>Работаем по записи — без ожидания в коридоре</span></li>
+          <li><span class="dot">✓</span><span>Кофе и Wi-Fi — можно прийти с ноутбуком</span></li>
+        </ul>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">Имя *</label>
+          <input type="text" id="name" name="name" placeholder="Мария" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <div class="field">
+          <label for="service">Услуга</label>
+          <select id="service" name="service">
+            <option>Маникюр + гель-лак</option>
+            <option>Дизайн ногтей</option>
+            <option>Педикюр</option>
+            <option>Брови</option>
+            <option>Маникюр + брови</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="comment">Комментарий</label>
+          <textarea id="comment" name="comment" placeholder="Например: хочу в четверг после 18:00, покрывало нюдом"></textarea>
+        </div>
+        <div class="form-success" id="success">Готово! Перезвоним в течение 15 минут и запишем на удобное время.</div>
+        <button type="submit" class="btn btn-full">Записаться</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Студия маникюра «LUMI». Ул. Садовая, 24. Телефон: <a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!this.name.value.trim() || !this.phone.value.trim()){
+      alert('Укажи имя и телефон — без них не записать.');
+      return;
+    }
+    document.getElementById('success').classList.add('visible');
+    this.reset();
+  });
+</script>
+</body>
+</html>
