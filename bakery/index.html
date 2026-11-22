@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пекарня «Мякиш» — свежая выпечка каждое утро</title>
+<meta name="description" content="Пекарня «Мякиш»: хлеб на закваске, круассаны и торты ручной работы. Доставка по городу и самовывоз.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fff6ee;
+    --card:#ffffff;
+    --text:#43281b;
+    --muted:#9a7f6d;
+    --accent:#d95f76;
+    --accent-dark:#bd4560;
+    --honey:#f2b04c;
+    --sage:#9db98a;
+    --border:#f0dccd;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Manrope",Arial,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;
+    overflow-x:hidden;-webkit-text-size-adjust:100%;
+  }
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+  h1,h2,h3,.logo{font-family:"Prata",Georgia,serif;font-weight:400}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(255,246,238,.92);backdrop-filter:blur(8px)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{font-size:1.45rem;color:var(--text);text-decoration:none}
+  .logo em{font-style:normal;color:var(--accent)}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--muted);text-decoration:none;font-size:.95rem;font-weight:600;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  .burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .burger svg{width:26px;height:26px;stroke:var(--text)}
+
+  .hero{position:relative;padding:64px 0 96px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .hero .tag{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);
+    padding:8px 18px;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--accent);margin-bottom:22px;box-shadow:0 2px 10px rgba(67,40,27,.06)}
+  .hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.12}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p{max-width:480px;margin:18px 0 32px;color:var(--muted);font-size:1.05rem}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:15px 34px;border-radius:999px;
+    text-decoration:none;font-weight:700;border:none;cursor:pointer;font-size:1rem;transition:background .2s,transform .2s}
+  .btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+  .btn-outline:hover{background:var(--accent);color:#fff}
+  .blob{width:100%;max-width:420px;aspect-ratio:1/1.02;margin:0 auto;background:
+    radial-gradient(circle at 30% 30%,#ffe1d6,transparent 60%),
+    radial-gradient(circle at 70% 75%,#ffd9e4,transparent 55%),var(--honey);
+    border-radius:58% 42% 45% 55% / 52% 48% 60% 40%;
+    display:flex;align-items:center;justify-content:center;font-size:8rem;
+    box-shadow:inset 0 -14px 40px rgba(67,40,27,.12);animation:blob 9s ease-in-out infinite}
+  @keyframes blob{
+    0%,100%{border-radius:58% 42% 45% 55% / 52% 48% 60% 40%}
+    33%{border-radius:46% 54% 60% 40% / 44% 60% 40% 56%}
+    66%{border-radius:55% 45% 40% 60% / 58% 42% 55% 45%}
+  }
+  .hero-chips{position:absolute;bottom:34px;left:0;right:0}
+  .hero-chips .container{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  .chip{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:8px 18px;
+    font-size:.85rem;font-weight:600;color:var(--text);box-shadow:0 2px 10px rgba(67,40,27,.06)}
+  .chip b{color:var(--accent)}
+
+  .wave{display:block;width:100%;height:70px;margin-top:-69px;position:relative;z-index:-1}
+  .wave path{fill:var(--card)}
+
+  section{padding:64px 0}
+  .section-title{text-align:center;font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:12px}
+  .section-sub{text-align:center;color:var(--muted);max-width:460px;margin:0 auto 44px;font-size:.98rem}
+
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .prod{background:var(--card);border:1px solid var(--border);padding:26px 22px 24px;
+    box-shadow:0 4px 18px rgba(67,40,27,.07);transition:transform .2s,box-shadow .2s}
+  .prod:nth-child(odd){border-radius:26px 6px 26px 6px}
+  .prod:nth-child(even){border-radius:6px 26px 6px 26px}
+  .prod:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(67,40,27,.12)}
+  .prod .emoji{display:flex;align-items:center;justify-content:center;width:64px;height:64px;margin-bottom:16px;
+    background:var(--bg);border-radius:46% 54% 55% 45%/50% 44% 56% 50%;font-size:1.9rem}
+  .prod:nth-child(even) .emoji{border-radius:54% 46% 45% 55%/46% 56% 44% 50%}
+  .prod h3{font-size:1.15rem;margin-bottom:8px}
+  .prod p{font-size:.9rem;color:var(--muted)}
+  .prod .price{display:block;margin-top:14px;font-weight:700;color:var(--accent)}
+
+  .morning{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .morning-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .m-item{text-align:center;padding:12px}
+  .m-item b{font-family:"Prata",Georgia,serif;font-size:2rem;display:block;color:var(--accent);margin-bottom:6px}
+  .m-item span{font-size:.92rem;color:var(--muted)}
+
+  #order{padding-bottom:88px}
+  .order-wrap{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .order-info h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:16px}
+  .order-info p{color:var(--muted);margin-bottom:22px}
+  .order-list{list-style:none}
+  .order-list li{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+  .order-list .dot{flex:none;width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;margin-top:2px}
+  form{display:grid;gap:14px;background:var(--card);border:1px solid var(--border);
+    border-radius:28px;padding:30px 28px;box-shadow:0 6px 24px rgba(67,40,27,.08)}
+  .field label{display:block;font-size:.85rem;font-weight:700;margin-bottom:6px}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:14px;
+    font:inherit;color:var(--text);background:var(--bg);transition:border-color .2s,box-shadow .2s}
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(217,95,118,.14)}
+  .field textarea{resize:vertical;min-height:84px}
+  .form-success{display:none;background:#fdeef1;border:1px solid var(--accent);color:var(--accent-dark);
+    padding:12px 16px;border-radius:14px;font-size:.9rem}
+  .form-success.visible{display:block}
+  .btn-full{width:100%}
+  .form-note{font-size:.78rem;color:var(--muted);text-align:center}
+
+  footer{padding:30px 0;text-align:center;color:var(--muted);font-size:.88rem}
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .blob{max-width:320px;font-size:6rem}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .morning-wrap{grid-template-columns:1fr}
+    .order-wrap{grid-template-columns:1fr}
+    nav{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;
+      background:var(--card);border-bottom:1px solid var(--border);padding:16px 24px;gap:16px}
+    nav.open{display:flex}
+    .burger{display:block}
+  }
+  @media (max-width:520px){
+    .cards{grid-template-columns:1fr}
+    .hero .btn{width:100%;text-align:center}
+    .hero .btn-outline{margin-left:0}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a class="logo" href="#">Мяки<em>ш</em></a>
+    <nav id="nav">
+      <a href="#assort">Ассортимент</a>
+      <a href="#fresh">Свежесть</a>
+      <a href="#order">Заказ</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="tag">🥐 Пекарня с 7:00</span>
+        <h1>Тёплый хлеб, от которого <em>сдаётся диета</em></h1>
+        <p>Хлеб на живой закваске, круассаны из слоёного теста 72 часа и торты ручной работы. Всё печём каждое утро — к 8:00 полки полные.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#order">Собрать заказ</a>
+          <a class="btn btn-outline" href="#assort">Ассортимент</a>
+        </div>
+      </div>
+      <div class="blob">🥖</div>
+    </div>
+    <div class="hero-chips">
+      <div class="container">
+        <span class="chip">🎟 <b>Круассан в подарок</b> при заказе от 1 500 ₽</span>
+        <span class="chip">🛵 Доставка по городу за <b>60 минут</b></span>
+      </div>
+    </div>
+  </section>
+  <svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,45 L1440,70 L0,70 Z"/>
+  </svg>
+
+  <section id="assort">
+    <div class="container">
+      <h2 class="section-title">Из печи сегодня</h2>
+      <p class="section-sub">Ассортимент меняется каждый день — этот список актуален на утро.</p>
+      <div class="cards">
+        <div class="prod">
+          <div class="emoji">🍞</div>
+          <h3>Хлеб на закваске</h3>
+          <p>Пшенично-ржаной, томлёный 8 часов. Хрустящая корка, мягкий мякиш.</p>
+          <span class="price">160 ₽</span>
+        </div>
+        <div class="prod">
+          <div class="emoji">🥐</div>
+          <h3>Круассаны</h3>
+          <p>Классика, миндаль, шоколад. Тесто томится 72 часа перед выпечкой.</p>
+          <span class="price">от 120 ₽</span>
+        </div>
+        <div class="prod">
+          <div class="emoji">🎂</div>
+          <h3>Торты на заказ</h3>
+          <p>Медовик, «Прага», морковный. Декор и надпись — под ваше событие.</p>
+          <span class="price">от 1 900 ₽</span>
+        </div>
+        <div class="prod">
+          <div class="emoji">🥨</div>
+          <h3>Сдоба и пироги</h3>
+          <p>Синнабоны, слойки, пироги с ягодами. Печём два раза в день.</p>
+          <span class="price">от 80 ₽</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="morning" id="fresh">
+    <div class="container">
+      <h2 class="section-title">Почему от нас пахнет на весь квартал</h2>
+      <p class="section-sub">Три простых принципа, которые не меняются с первого дня.</p>
+      <div class="morning-wrap">
+        <div class="m-item"><b>05:30</b><span>тестораскатка и первая партия в печи — за 2,5 часа до открытия</span></div>
+        <div class="m-item"><b>0</b><span>консервантов и улучшителей — мука, вода, соль, закваска</span></div>
+        <div class="m-item"><b>−50%</b><span>вчерашняя выпечка к вечеру — со скидкой, а не в мусорку</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="container order-wrap">
+      <div class="order-info">
+        <h2>Соберём заказ к вашему приходу</h2>
+        <p>Оставьте заявку — перезвоним в течение 15 минут, подтвердим состав и время. Или пишите сразу в Telegram: <b>@myakish_pek</b></p>
+        <ul class="order-list">
+          <li><span class="dot">1</span><span>Работаем ежедневно с 7:00 до 20:00, без выходных</span></li>
+          <li><span class="dot">2</span><span>Торты и большие заказы — минимум за сутки</span></li>
+          <li><span class="dot">3</span><span>Доставка от 1 000 ₽ — бесплатно, за час по городу</span></li>
+        </ul>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">Имя *</label>
+          <input type="text" id="name" name="name" placeholder="Аня" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <div class="field">
+          <label for="what">Что заказать</label>
+          <select id="what" name="what">
+            <option>Хлеб и выпечка к завтраку</option>
+            <option>Круассаны</option>
+            <option>Торт на событие</option>
+            <option>Пирог / сдоба</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="comment">Комментарий</label>
+          <textarea id="comment" name="comment" placeholder="Например: медовик на 8 человек, заберу в субботу к 12:00"></textarea>
+        </div>
+        <div class="form-success" id="success">Готово! Перезвоним в течение 15 минут и соберём заказ.</div>
+        <button type="submit" class="btn btn-full">Отправить заявку</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Пекарня «Мякиш». Ул. Пекарская, 8. Ежедневно 7:00–20:00. Телефон: <a href="tel:+79001234567">+7 (900) 123-45-67</a></p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!this.name.value.trim() || !this.phone.value.trim()){
+      alert('Укажите имя и телефон — иначе не соберём заказ.');
+      return;
+    }
+    document.getElementById('success').classList.add('visible');
+    this.reset();
+  });
+</script>
+</body>
+</html>
