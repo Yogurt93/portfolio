@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тату-студия «Чёрная Игла» — татуировки в Новосибирске</title>
+<meta name="description" content="Тату-студия «Чёрная Игла»: эскизы под тебя, стерильный кабинет, мастера с опытом 7+ лет. Запись онлайн.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f1ede4;
+    --ink:#141414;
+    --red:#e0301e;
+    --muted:#5c5850;
+    --shadow:5px 5px 0 var(--ink);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Space Grotesk",Arial,sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.55;
+    overflow-x:hidden;-webkit-text-size-adjust:100%;
+  }
+  .container{max-width:1080px;margin:0 auto;padding:0 20px}
+  h1,h2,h3,.marquee,.btn,nav a,.logo{font-family:"Oswald",Arial,sans-serif;text-transform:uppercase}
+
+  .marquee{overflow:hidden;background:var(--ink);color:var(--paper);border-bottom:2px solid var(--ink)}
+  .marquee-track{display:inline-flex;white-space:nowrap;animation:scroll 26s linear infinite}
+  .marquee-track span{padding:8px 28px;font-size:.85rem;letter-spacing:.18em;font-weight:500}
+  .marquee-track span b{color:var(--red)}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  header{border-bottom:2px solid var(--ink)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .logo{font-size:1.35rem;font-weight:700;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+  .logo span{color:var(--red)}
+  nav{display:flex;gap:28px}
+  nav a{color:var(--ink);text-decoration:none;font-size:.95rem;font-weight:500;letter-spacing:.1em}
+  nav a:hover{color:var(--red)}
+  .burger{display:none;background:none;border:2px solid var(--ink);cursor:pointer;padding:6px 8px}
+  .burger svg{width:22px;height:22px;stroke:var(--ink);display:block}
+
+  .hero{padding:72px 0 64px;border-bottom:2px solid var(--ink)}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:start}
+  .hero .tag{display:inline-block;background:var(--red);color:#fff;padding:6px 14px;
+    font-family:"Oswald",sans-serif;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px}
+  .hero h1{font-size:clamp(2.6rem,7.5vw,5rem);line-height:.98;font-weight:700;letter-spacing:.01em}
+  .hero h1 em{font-style:normal;color:var(--red)}
+  .hero p{max-width:520px;margin:24px 0 32px;color:var(--muted);font-size:1.05rem}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--ink);color:var(--paper);padding:15px 34px;
+    text-decoration:none;font-weight:600;font-size:1rem;letter-spacing:.08em;border:2px solid var(--ink);
+    cursor:pointer;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
+  .btn:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+  .btn-red{background:var(--red);border-color:var(--red)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+  .hero-facts{display:grid;border:2px solid var(--ink);box-shadow:var(--shadow)}
+  .hero-facts div{padding:16px 20px;border-bottom:2px solid var(--ink)}
+  .hero-facts div:last-child{border-bottom:none}
+  .hero-facts b{font-family:"Oswald",sans-serif;font-size:1.5rem;font-weight:700;display:block}
+  .hero-facts span{font-size:.85rem;color:var(--muted)}
+
+  section{padding:72px 0;border-bottom:2px solid var(--ink)}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap}
+  .section-head h2{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:700;letter-spacing:.02em}
+  .section-head h2 b{color:var(--red)}
+  .section-head span{font-size:.9rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+
+  .price-list{border:2px solid var(--ink);box-shadow:var(--shadow);background:var(--paper)}
+  .price-row{display:flex;align-items:baseline;gap:16px;padding:18px 24px;border-bottom:2px solid var(--ink);transition:background .15s,color .15s}
+  .price-row:last-child{border-bottom:none}
+  .price-row:hover{background:var(--ink);color:var(--paper)}
+  .price-row:hover .price-dots{border-color:var(--paper)}
+  .price-row:hover .price-note{color:#b5b1a8}
+  .price-row h3{font-size:1.15rem;font-weight:600;letter-spacing:.04em}
+  .price-dots{flex:1;border-bottom:2px dotted var(--ink);transform:translateY(-4px)}
+  .price-val{font-family:"Oswald",sans-serif;font-size:1.3rem;font-weight:700;white-space:nowrap}
+  .price-note{display:block;font-size:.85rem;color:var(--muted);margin-top:2px}
+
+  .tiles{display:grid;grid-template-columns:repeat(4,1fr);border:2px solid var(--ink);box-shadow:var(--shadow)}
+  .tile{aspect-ratio:1;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-family:"Oswald",sans-serif;
+    font-weight:700;background:var(--paper);transition:background .15s,color .15s;position:relative}
+  .tile:nth-child(-n+4){border-top:none}
+  .tile:nth-child(4n){border-right:none}
+  .tile:hover{background:var(--red);color:#fff}
+  .tile small{position:absolute;bottom:10px;left:12px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+
+  .masters{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .master{border:2px solid var(--ink);box-shadow:var(--shadow);padding:28px;background:var(--paper)}
+  .master:hover{background:#fff}
+  .master .num{font-family:"Oswald",sans-serif;font-size:.85rem;letter-spacing:.2em;color:var(--red);font-weight:600}
+  .master h3{font-size:1.5rem;font-weight:700;margin:8px 0 4px}
+  .master .exp{font-size:.85rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+  .master p{font-size:.95rem;color:var(--muted)}
+
+  #booking{background:var(--ink);color:var(--paper);border-bottom:none}
+  #booking .section-head h2{color:var(--paper)}
+  #booking .section-head span{color:#8f8b83}
+  .booking-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .booking-info p{color:#b5b1a8;margin-bottom:24px;font-size:1.02rem}
+  .rules{list-style:none}
+  .rules li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #33322e;font-size:.95rem}
+  .rules li:last-child{border-bottom:none}
+  .rules .n{color:var(--red);font-family:"Oswald",sans-serif;font-weight:700}
+  form{display:grid;gap:16px}
+  .field label{display:block;font-size:.8rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;color:#8f8b83}
+  .field input,.field select,.field textarea{
+    width:100%;padding:14px 16px;background:transparent;border:2px solid #4a4841;color:var(--paper);
+    font:inherit;transition:border-color .15s}
+  .field input::placeholder,.field textarea::placeholder{color:#6d6a62}
+  .field select{color:var(--paper)}
+  .field select option{color:var(--ink)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red)}
+  .field textarea{resize:vertical;min-height:90px}
+  .form-success{display:none;border:2px solid var(--red);color:var(--paper);padding:12px 16px;font-size:.9rem}
+  .form-success.visible{display:block}
+  .btn-full{width:100%}
+  .form-note{font-size:.78rem;color:#6d6a62}
+
+  footer{padding:26px 0;color:var(--muted);font-size:.88rem}
+  footer a{color:var(--red);text-decoration:none}
+  footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .tiles{grid-template-columns:repeat(2,1fr)}
+    .tile:nth-child(-n+4){border-top:2px solid var(--ink)}
+    .tile:nth-child(-n+2){border-top:none}
+    .tile:nth-child(4n){border-right:2px solid var(--ink)}
+    .tile:nth-child(2n){border-right:none}
+    .masters{grid-template-columns:1fr}
+    .booking-wrap{grid-template-columns:1fr}
+    nav{display:none;position:absolute;top:70px;left:0;right:0;flex-direction:column;gap:0;
+      background:var(--paper);border-bottom:2px solid var(--ink);z-index:50}
+    nav a{padding:14px 24px;border-bottom:1px solid #d8d3c6}
+    nav.open{display:flex}
+    .burger{display:block}
+  }
+  @media (max-width:520px){
+    section{padding:52px 0}
+    .hero{padding:52px 0}
+    .price-row{flex-wrap:wrap;padding:16px 18px}
+    .price-dots{display:none}
+    .price-val{margin-left:auto}
+    .btn{width:100%;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>ЭСКИЗ ПОД ТЕБЯ <b>✕</b> БЕСПЛАТНО</span><span>СТЕРИЛЬНЫЙ КАБИНЕТ <b>✕</b> ОДНОРАЗОВЫЕ ИГЛЫ</span><span>ЗАПИСЬ ОТКРЫТА <b>✕</b> ЭТОЙ НЕДЕЛЕ</span>
+    <span>ЭСКИЗ ПОД ТЕБЯ <b>✕</b> БЕСПЛАТНО</span><span>СТЕРИЛЬНЫЙ КАБИНЕТ <b>✕</b> ОДНОРАЗОВЫЕ ИГЛЫ</span><span>ЗАПИСЬ ОТКРЫТА <b>✕</b> ЭТОЙ НЕДЕЛЕ</span>
+  </div>
+</div>
+
+<header>
+  <div class="container header-inner">
+    <a class="logo" href="#">Чёрная<span>Игла</span></a>
+    <nav id="nav">
+      <a href="#prices">Цены</a>
+      <a href="#works">Работы</a>
+      <a href="#masters">Мастера</a>
+      <a href="#booking">Запись</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="tag">Тату-студия</span>
+        <h1>Тату, которую <em>не захочется</em> сводить</h1>
+        <p>Эскиз под тебя, а не из паблика. Работаем в одном кабинете, всё стерильно, иглы одноразовые — вскрываем при тебе.</p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href="#booking">Записаться на сеанс</a>
+          <a class="btn btn-ghost" href="#prices">Цены</a>
+        </div>
+      </div>
+      <div class="hero-facts">
+        <div><b>7+ лет</b><span>опыт мастеров</span></div>
+        <div><b>0 ₽</b><span>эскиз при записи</span></div>
+        <div><b>4.9</b><span>рейтинг на картах</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prices">
+    <div class="container">
+      <div class="section-head">
+        <h2>Цены <b>/</b> без сюрпризов</h2>
+        <span>Финальная цена — после эскиза</span>
+      </div>
+      <div class="price-list">
+        <div class="price-row">
+          <div><h3>Мини-тату</h3><span class="price-note">до 5 см, один сеанс</span></div>
+          <div class="price-dots"></div>
+          <div class="price-val">от 3 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><h3>Средняя работа</h3><span class="price-note">предплечье, голень, лопатка</span></div>
+          <div class="price-dots"></div>
+          <div class="price-val">от 8 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><h3>Проект</h3><span class="price-note">рукав, бедро, спина — несколько сеансов</span></div>
+          <div class="price-dots"></div>
+          <div class="price-val">от 20 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><h3>Перекрытие / реставрация</h3><span class="price-note">старая тату, шрамы</span></div>
+          <div class="price-dots"></div>
+          <div class="price-val">от 6 000 ₽</div>
+        </div>
+        <div class="price-row">
+          <div><h3>Консультация + эскиз</h3><span class="price-note">при записи на сеанс — бесплатно</span></div>
+          <div class="price-dots"></div>
+          <div class="price-val">0 ₽</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="container">
+      <div class="section-head">
+        <h2>Работы <b>/</b> стили</h2>
+        <span>Полное портфолио — у мастера</span>
+      </div>
+      <div class="tiles">
+        <div class="tile">✕<small>Олдскул</small></div>
+        <div class="tile">◉<small>Минимализм</small></div>
+        <div class="tile">⌖<small>Орнаментал</small></div>
+        <div class="tile">✱<small>Блэкворк</small></div>
+        <div class="tile">◆<small>Дотворк</small></div>
+        <div class="tile">✜<small>Графика</small></div>
+        <div class="tile">✂<small>Лайнворк</small></div>
+        <div class="tile">☾<small>Неотрад</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="masters">
+    <div class="container">
+      <div class="section-head">
+        <h2>Мастера <b>/</b> кто колет</h2>
+        <span>Запись по предварительному созвону</span>
+      </div>
+      <div class="masters">
+        <div class="master">
+          <span class="num">01</span>
+          <h3>Артём «Игла»</h3>
+          <div class="exp">Блэкворк · Орнаментал · 9 лет</div>
+          <p>Крупные проекты и рукава. Соблюет твой стиль, а не лепит «как у всех». Эскиз правит до полного «да».</p>
+        </div>
+        <div class="master">
+          <span class="num">02</span>
+          <h3>Кира Сев.</h3>
+          <div class="exp">Минимализм · Дотворк · 7 лет</div>
+          <p>Тонкий лайн, мини-тату и деликатные работы. 90% клиентов приходят к ней по рекомендации.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="container booking-wrap">
+      <div class="booking-info">
+        <div class="section-head" style="margin-bottom:8px">
+          <h2>Запись <b>/</b> на этой неделе</h2>
+        </div>
+        <p>Оставь заявку — перезвоним в течение часа, обсудим идею и место. Или пиши сразу в Telegram: <b style="color:var(--paper)">@chernaya_igla</b></p>
+        <ul class="rules">
+          <li><span class="n">01</span><span>Эскиз делаем бесплатно, правки — до полного «да»</span></li>
+          <li><span class="n">02</span><span>Цена фиксируется до сеанса и не меняется</span></li>
+          <li><span class="n">03</span><span>Вскрываем иглы при тебе, всё в дезинфекции</span></li>
+          <li><span class="n">04</span><span>Ежедневно с 11:00 до 21:00, по записи</span></li>
+        </ul>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">Имя *</label>
+          <input type="text" id="name" name="name" placeholder="Никита" required>
+        </div>
+        <div class="field">
+          <label for="phone">Телефон или Telegram *</label>
+          <input type="text" id="phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+        <div class="field">
+          <label for="service">Что интересует</label>
+          <select id="service" name="service">
+            <option>Мини-тату</option>
+            <option>Средняя работа</option>
+            <option>Проект (рукав / бедро)</option>
+            <option>Перекрытие / реставрация</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="idea">Идея и место</label>
+          <textarea id="idea" name="idea" placeholder="Например: воротник на предплечье, эскиз с птицей"></textarea>
+        </div>
+        <div class="form-success" id="success">Принято! Перезвоним в течение часа и обговорим эскиз.</div>
+        <button type="submit" class="btn btn-red btn-full">Отправить заявку</button>
+        <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Тату-студия «Чёрная Игла». Ул. Гоголя, 13</p>
+    <p><a href="tel:+79001234567">+7 (900) 123-45-67</a> · <a href="https://t.me/chernaya_igla">@chernaya_igla</a></p>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!this.name.value.trim() || !this.phone.value.trim()){
+      alert('Укажите имя и телефон — без них заявку не принять.');
+      return;
+    }
+    document.getElementById('success').classList.add('visible');
+    this.reset();
+  });
+</script>
+</body>
+</html>
